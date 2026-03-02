@@ -133,6 +133,39 @@ export default function App() {
           pointerEvents: showBokeh ? "auto" : "none",
         }}
       >
+        <p
+          style={{
+            fontFamily: '"General Sans", system-ui, sans-serif',
+            fontSize: "0.72rem",
+            fontWeight: 400,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            marginBottom: "0.35rem",
+          }}
+        >
+          <span style={{ color: "rgba(255,255,255,0.45)" }}>made by </span>
+          <span
+            style={{
+              background:
+                "linear-gradient(90deg, #2dd4bf, #facc15, #f472b6, #818cf8, #2dd4bf)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "gradientShift 4s linear infinite",
+              fontWeight: 600,
+              letterSpacing: "0.18em",
+            }}
+          >
+            PRINCE VERMA
+          </span>
+        </p>
+        <style>{`
+          @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+          }
+        `}</style>
         <a
           href={`https://caffeine.ai?utm_source=caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(
             typeof window !== "undefined" ? window.location.hostname : "",
