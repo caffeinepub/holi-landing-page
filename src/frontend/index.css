@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   HOLI — Design System Tokens (OKLCH)
+   ============================================================ */
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* Core palette */
+    --holi-offwhite: #faf9f6;
+    --holi-near-black: #1a1a2e;
+    --holi-teal: #00bfa5;
+    --holi-gold: #ffd700;
+    --holi-pink: #ff6b9d;
+    --holi-indigo: #4b0082;
+    --holi-magenta: #d0006f;
+    --holi-purple: #7b2d8b;
+
+    /* shadcn semantic tokens */
+    --background: 0.981 0.004 90;
+    --foreground: 0.16 0.03 285;
+    --card: 1 0 0;
+    --card-foreground: 0.16 0.03 285;
+    --popover: 1 0 0;
+    --popover-foreground: 0.16 0.03 285;
+    --primary: 0.55 0.22 295;
+    --primary-foreground: 0.985 0 0;
+    --secondary: 0.97 0.01 295;
+    --secondary-foreground: 0.25 0.05 295;
+    --muted: 0.97 0.01 295;
+    --muted-foreground: 0.55 0.03 295;
+    --accent: 0.93 0.04 190;
+    --accent-foreground: 0.16 0.04 200;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.92 0.01 295;
+    --input: 0.92 0.01 295;
+    --ring: 0.65 0.2 295;
+    --chart-1: 0.75 0.18 190;
+    --chart-2: 0.85 0.2 85;
+    --chart-3: 0.65 0.28 340;
+    --chart-4: 0.55 0.22 295;
+    --chart-5: 0.7 0.25 20;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.16 0.03 285;
+    --sidebar-primary: 0.55 0.22 295;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0.01 295;
+    --sidebar-accent-foreground: 0.25 0.05 295;
+    --sidebar-border: 0.92 0.01 295;
+    --sidebar-ring: 0.65 0.2 295;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow: hidden;
+  }
+}
+
+/* ============================================================
+   HOLI — Animation Keyframes
+   ============================================================ */
+
+@keyframes splat {
+  0% {
+    transform: scale(0) rotate(var(--drop-rotation));
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.3) rotate(var(--drop-rotation));
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(var(--drop-rotation));
+    opacity: var(--drop-opacity);
+  }
+}
+
+@keyframes fadeRise {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes bokehFloat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes vignetteAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subtitleFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes footerFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes powderDrift {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: var(--powder-opacity, 0.2);
+  }
+  25% {
+    transform: translate(calc(var(--drift-x) * 0.5), calc(var(--drift-y) * 0.5)) rotate(calc(var(--powder-rotation) * 0.4)) scale(1.15);
+    opacity: calc(var(--powder-opacity, 0.2) * 1.4);
+  }
+  50% {
+    transform: translate(var(--drift-x), var(--drift-y)) rotate(var(--powder-rotation)) scale(0.9);
+    opacity: var(--powder-opacity, 0.2);
+  }
+  75% {
+    transform: translate(calc(var(--drift-x) * 0.3), calc(var(--drift-y) * 1.2)) rotate(calc(var(--powder-rotation) * 0.7)) scale(1.1);
+    opacity: calc(var(--powder-opacity, 0.2) * 1.2);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: var(--powder-opacity, 0.2);
+  }
+}
+
+@keyframes colorPulse {
+  0%, 100% {
+    filter: blur(var(--powder-blur, 20px)) brightness(1);
+  }
+  50% {
+    filter: blur(calc(var(--powder-blur, 20px) * 0.75)) brightness(1.3);
+  }
+}
+
+/* ============================================================
+   HOLI — Gradient Text
+   ============================================================ */
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    #00bfa5 0%,
+    #ffd700 33%,
+    #ff6b9d 66%,
+    #00bfa5 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ============================================================
+   HOLI — Glass Backdrop
+   ============================================================ */
+
+.glass-backdrop {
+  background: rgba(250, 249, 246, 0.12);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   HOLI — Droplet
+   ============================================================ */
+
+.droplet {
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: splat 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--drop-delay);
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(var(--drop-blur));
+}
+
+/* ============================================================
+   HOLI — Powder Orb (floating colour clouds)
+   ============================================================ */
+
+.powder-orb {
+  animation-name: powderDrift, colorPulse;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-direction: alternate, normal;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
